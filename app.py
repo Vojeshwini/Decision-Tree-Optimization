@@ -91,38 +91,116 @@ TYPE_COLORS = {"A": "#4C8DE8", "B": "#E8A33D", "C": "#E2584F"}
 # Custom styling (dark, data-console look)
 # ------------------------------------------------------------------
 st.markdown("""
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-.stApp { background-color: #0F1216; }
-[data-testid="stSidebar"] { background-color: #161A20; }
-
-/* Force high-contrast text everywhere -- fixes default Streamlit text
-   rendering as low-contrast dark gray on our dark background. */
-h1, h2, h3, h4, p, span, label, .stMarkdown, .stCaption,
-[data-testid="stMetricValue"], [data-testid="stMetricLabel"] {
-    color: #F2F1ED !important;
+:root{
+  --bg-0:#0F1216; --bg-1:#161A20; --bg-2:#1D222A; --bg-3:#242A34;
+  --line:#282E38; --line-strong:#3A4150;
+  --amber:#E8A33D; --amber-bg:#2A2115;
+  --teal:#3FE0C0; --red:#E2584F;
+  --text-hi:#F2F1ED; --text-mid:#C9CDD6; --text-lo:#8B92A0;
+  --disp:'Space Grotesk',sans-serif; --mono:'IBM Plex Mono',monospace;
 }
-h1, h2, h3 { font-family: 'Space Grotesk', sans-serif !important; font-weight: 600 !important; }
-p, .stMarkdown p { color: #C9CDD6 !important; }
-[data-testid="stCaptionContainer"], .stCaption, small { color: #8B92A0 !important; }
 
-/* Tabs */
-button[data-baseweb="tab"] { color: #8B92A0 !important; font-weight: 500 !important; }
-button[data-baseweb="tab"][aria-selected="true"] { color: #E8A33D !important; }
-button[data-baseweb="tab"] p { color: inherit !important; }
+/* ---- Hide Streamlit's default chrome ---- */
+#MainMenu, header[data-testid="stHeader"], footer, div[data-testid="stDecoration"],
+.stAppDeployButton, [data-testid="stToolbar"] { display: none !important; }
+.stApp { background-color: var(--bg-0); }
+.block-container { padding-top: 2rem !important; max-width: 1180px; }
 
-/* Sidebar labels, radio, selectbox, slider */
-[data-testid="stSidebar"] label, [data-testid="stSidebar"] p { color: #C9CDD6 !important; }
-[data-testid="stWidgetLabel"] p { color: #C9CDD6 !important; }
-.stSlider label, .stSelectbox label, .stMultiSelect label, .stCheckbox label, .stRadio label { color: #C9CDD6 !important; }
-[data-testid="stSelectbox"] div, [data-testid="stMultiSelect"] div { color: #0F1216 !important; }
+/* ---- Base text ---- */
+h1, h2, h3, h4, p, span, label, .stMarkdown,
+[data-testid="stMetricValue"], [data-testid="stMetricLabel"] { color: var(--text-hi) !important; }
+h1, h2, h3 { font-family: var(--disp) !important; font-weight: 600 !important; letter-spacing: -0.01em; }
+p, .stMarkdown p { color: var(--text-mid) !important; }
+[data-testid="stCaptionContainer"], .stCaption, small { color: var(--text-lo) !important; }
+[data-testid="stSidebar"] { background-color: var(--bg-1); border-right: 1px solid var(--line); }
+[data-testid="stSidebar"] label, [data-testid="stSidebar"] p { color: var(--text-mid) !important; }
 
-/* KPI and rule boxes (custom) */
-.kpi-box { background:#161A20; border:1px solid #282E38; border-radius:10px; padding:16px 18px; }
-.kpi-label { font-size:11px; color:#5C6270 !important; text-transform:uppercase; letter-spacing:0.05em; }
-.kpi-val { font-family:monospace; font-size:26px; font-weight:600; color:#F2F1ED !important; }
-.rule-box { background:#1D222A; border:1px dashed #3A4150; border-radius:10px; padding:18px; font-family:monospace; font-size:13px; color:#9DA3B0 !important; white-space:pre-wrap; }
+/* ---- Custom header bar ---- */
+.app-header { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+.app-header .dot { width:9px; height:9px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 4px var(--amber-bg); flex-shrink:0; }
+.app-header .title { font-family:var(--disp); font-weight:700; font-size:26px; color:var(--text-hi); }
+.app-sub { color:var(--text-lo) !important; font-size:13px; margin:2px 0 20px 19px; font-family: var(--mono); }
+
+/* ---- Tabs ---- */
+.stTabs [data-baseweb="tab-list"] { gap: 4px; border-bottom: 1px solid var(--line); }
+button[data-baseweb="tab"] { color: var(--text-lo) !important; font-weight: 500 !important; background: transparent !important; }
+button[data-baseweb="tab"] p { color: inherit !important; font-size: 14px !important; }
+button[data-baseweb="tab"][aria-selected="true"] { color: var(--amber) !important; }
+button[data-baseweb="tab"][aria-selected="true"] p { color: var(--amber) !important; }
+[data-baseweb="tab-highlight"] { background-color: var(--amber) !important; }
+
+/* ---- Selectbox / multiselect: fix the mismatched white boxes ---- */
+[data-testid="stSelectbox"] div[data-baseweb="select"] > div,
+[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
+    background-color: var(--bg-2) !important;
+    border: 1px solid var(--line-strong) !important;
+    border-radius: 8px !important;
+    color: var(--text-hi) !important;
+}
+[data-testid="stSelectbox"] div[data-baseweb="select"] div,
+[data-testid="stMultiSelect"] div[data-baseweb="select"] div { color: var(--text-hi) !important; }
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] {
+    background-color: var(--amber-bg) !important; border: 1px solid var(--amber) !important;
+}
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] span { color: var(--amber) !important; }
+/* dropdown popover menu (rendered separately) */
+ul[data-baseweb="menu"] { background-color: var(--bg-2) !important; border: 1px solid var(--line-strong) !important; }
+ul[data-baseweb="menu"] li { color: var(--text-hi) !important; }
+ul[data-baseweb="menu"] li:hover { background-color: var(--bg-3) !important; }
+
+/* ---- Radio buttons ---- */
+div[role="radiogroup"] label { color: var(--text-mid) !important; }
+div[role="radiogroup"] label span:first-child > div { border-color: var(--line-strong) !important; }
+div[role="radiogroup"] label[data-checked="true"] span:first-child > div { border-color: var(--amber) !important; background-color: var(--amber) !important; }
+
+/* ---- Checkbox ---- */
+[data-testid="stCheckbox"] label span:first-child { border-color: var(--line-strong) !important; background-color: var(--bg-2) !important; }
+
+/* ---- Slider ---- */
+.stSlider [data-baseweb="slider"] > div > div { background: var(--line-strong) !important; }
+.stSlider [data-baseweb="slider"] > div > div > div { background: var(--amber) !important; }
+.stSlider [role="slider"] { background-color: var(--amber) !important; border-color: var(--amber) !important; }
+[data-testid="stTickBarMin"], [data-testid="stTickBarMax"] { color: var(--text-lo) !important; }
+.stSlider [data-baseweb="slider"] + div { color: var(--amber) !important; font-family: var(--mono) !important; }
+
+/* ---- Text input ---- */
+[data-testid="stTextInput"] input {
+    background-color: var(--bg-2) !important; border: 1px solid var(--line-strong) !important;
+    color: var(--text-hi) !important; border-radius: 8px !important;
+}
+
+/* ---- Buttons ---- */
+.stButton button {
+    background-color: var(--amber) !important; color: #1A1408 !important; border: none !important;
+    border-radius: 8px !important; font-weight: 600 !important; font-family: 'Inter', sans-serif !important;
+}
+.stButton button:hover { background-color: #F2B450 !important; }
+.stButton button p { color: #1A1408 !important; }
+
+/* ---- Dataframe / table ---- */
+[data-testid="stDataFrame"] { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+
+/* ---- Alerts (success/warning/info) ---- */
+[data-testid="stAlert"] { border-radius: 10px; }
+
+/* ---- KPI and rule boxes (custom) ---- */
+.kpi-box { background: var(--bg-1); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+.kpi-label { font-size:11px; color:var(--text-lo) !important; text-transform:uppercase; letter-spacing:0.05em; }
+.kpi-val { font-family: var(--mono); font-size:24px; font-weight:600; color:var(--text-hi) !important; margin-top: 4px; }
+.rule-box { background: var(--bg-2); border:1px dashed var(--line-strong); border-radius:10px; padding:18px; font-family: var(--mono); font-size:13px; color:var(--text-lo) !important; white-space:pre-wrap; line-height: 1.7; }
 .rule-box div { color: inherit; }
+
+/* ---- Section spacing ---- */
+.stSubheader, h3 { margin-top: 8px !important; }
 </style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="app-header"><span class="dot"></span><span class="title">Decision Tree Optimization Framework</span></div>
+<div class="app-sub">ADVANCED DECISION SUPPORT &amp; BUSINESS ANALYTICS &middot; LIVE BACKEND, REAL TRAINED MODELS</div>
 """, unsafe_allow_html=True)
 
 # ------------------------------------------------------------------
@@ -179,10 +257,8 @@ if store_filter != "All stores":
     fdf = fdf[fdf["Store"] == store_filter]
 
 # ------------------------------------------------------------------
-# Header
+# Header (styled version rendered above, in the CSS block)
 # ------------------------------------------------------------------
-st.title("Decision Tree Optimization Framework")
-st.caption("Advanced Decision Support & Business Analytics Applications · Live backend running real trained models")
 
 tab_bi, tab_dss, tab_models, tab_rules = st.tabs(
     ["📊 Business Intelligence", "🎯 Decision Support (Live Prediction)", "⚙️ Model Optimization", "📋 Decision Rules"]

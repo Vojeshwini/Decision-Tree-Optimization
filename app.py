@@ -160,14 +160,7 @@ HEADER_HTML = """
 """
 st.markdown(HEADER_HTML, unsafe_allow_html=True)
 
-ABOUT_HTML = """
-# <div class="about-box">
-# <div class="about-title">About this project</div>
-# <p><b>Objective:</b> Build and systematically optimize a decision tree (pruning, hyperparameter tuning, ensembling) for retail weekly sales forecasting, then deploy it as a working Decision Support and Business Intelligence tool.
-# <b>Dataset:</b> Walmart Store Sales Forecasting (Kaggle public benchmark) &mdash; 45 stores, 81 departments, 2010-2012.
-# <b>Base paper:</b> Wellens, Boute &amp; Udenio (2024), <i>European Journal of Operational Research</i> &mdash; extended here with systematic tree optimization, human-readable decision rules, holiday-weighted (WMAE) evaluation, and this deployable dashboard.</p>
-# </div>
-"""
+
 st.markdown(ABOUT_HTML, unsafe_allow_html=True)
 
 # ------------------------------------------------------------------

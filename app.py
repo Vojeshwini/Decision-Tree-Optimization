@@ -7,6 +7,7 @@ Deploy free:   push this repo to GitHub -> streamlit.io/cloud -> deploy,,,,,
 -----------------------------
 This app has a REAL backend:
  - Loads actual trained model artifacts (Random Forest + interpretable tree)
+ - Loads actual trained model artifacts (Random Forest + interpretable tree)
  - Runs live model.predict() inference for the Decision Support panel
  - Extracts live decision rules from the actual tree structure
  - Computes all BI charts/KPIs from the real dataset with live pandas filtering

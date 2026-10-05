@@ -3,7 +3,7 @@ Decision Tree Optimization Framework -- Decision Support & Business
 Intelligence Application (Streamlit)))
 
 Run locally:   streamlit run app.py
-Deploy free:   push this repo to GitHub -> streamlit.io/cloud -> deploy,,,,,
+Deploy free:   push this repo to GitHub -> streamlit.io/cloud -> deploy
 
 
 

@@ -16,7 +16,7 @@ This app has a REAL backend:
  - Extracts live decision rules from the actual tree structure
 
 No numbers are hardcoded -- everything recalculates from the underlying data
-and models whenever you change a filter or input.-----------------
+and models whenever you change a filter or input.
 """
 import joblib
 import numpy as np

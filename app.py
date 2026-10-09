@@ -14,7 +14,7 @@ This app has a REAL backend:
  - Loads actual trained model artifacts (Random Forest + interpretable tree))
  - Runs live model.predict() inference for the Decision Support panel
  - Extracts live decision rules from the actual tree structure
- - Computes all BI charts/KPIs from the real dataset with live pandas filtering
+
 No numbers are hardcoded -- everything recalculates from the underlying data
 and models whenever you change a filter or input.-----------------
 """

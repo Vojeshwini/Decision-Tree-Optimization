@@ -6,7 +6,6 @@ Run locally:   streamlit run app.py
 
 
  - Loads actual trained model artifacts (Random Forest + interpretable tree))
- - Loads actual trained model artifacts (Random Forest + interpretable tree))
 
  - Runs live model.predict() inference for the Decision Support panel
  - Extracts live decision rules from the actual tree structure

@@ -1,6 +1,5 @@
 """
-Decision Tree Optimization Framework -- Decision Support & 
-
+Decision Tree Optimization Framework 
 Run locally:   streamlit run app.py
 
 

@@ -2,7 +2,6 @@
 
 
 
- - Extracts live decision rules from the actual tree structure
 
 No numbers are hardcoded -- everything recalculates from the underlying data
 and models whenever you change a filter or input.

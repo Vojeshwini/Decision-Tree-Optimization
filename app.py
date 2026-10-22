@@ -2,8 +2,6 @@
 
 
 
-
- - Runs live model.predict() inference for the Decision Support panel
  - Extracts live decision rules from the actual tree structure
 
 No numbers are hardcoded -- everything recalculates from the underlying data

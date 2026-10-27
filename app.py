@@ -15,7 +15,7 @@ from sklearn.tree import export_text
 
 # -----------------------------
 # Page config
-# ------------------------------------------------------------------
+# ----------------------------------------------------
 st.set_page_config(
     page_title="Decision Tree Optimization Framework | DSS & BI",
     page_icon="📊",

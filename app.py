@@ -13,7 +13,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from sklearn.tree import export_text
 
-# -----------------------------
+# ---------------------
 # Page config
 # ----------------
 st.set_page_config(
